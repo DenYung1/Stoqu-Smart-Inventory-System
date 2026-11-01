@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile-specific styles for better touch experience */
+@layer base {
+  html {
+    /* Enable smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Improve tap highlighting */
+    -webkit-tap-highlight-color: rgba(16, 185, 129, 0.1);
+  }
+
+  body {
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better touch target sizing for mobile */
+  button, .btn, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve input experience on mobile */
+  input, textarea, select {
+    /* Prevent zoom on iOS when focusing inputs */
+    font-size: 16px;
+    /* Better touch experience */
+    border-radius: 8px;
+  }
+
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.8);
+  }
+
+  /* Enhanced mobile input behavior */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="password"], 
+  input[type="number"], 
+  input[type="tel"], 
+  input[type="search"],
+  textarea {
+    /* Improve mobile typing experience */
+    -webkit-appearance: none;
+    appearance: none;
+    /* Better mobile keyboard handling */
+    autocapitalize: off;
+    autocorrect: off;
+    spellcheck: false;
+  }
+
+  /* Prevent double-tap zoom on buttons */
+  button {
+    touch-action: manipulation;
+  }
+
+  /* Better mobile link behavior */
+  a {
+    -webkit-touch-callout: none;
+  }
+}
+
+@layer components {
+  /* Mobile-first responsive containers */
+  .mobile-container {
+    @apply px-4 py-4 sm:px-6 sm:py-6;
+  }
+
+  .mobile-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6;
+  }
+
+  /* Touch-friendly buttons */
+  .btn-touch {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Mobile grid layouts */
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  .mobile-grid-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+
+  /* Mobile form layouts */
+  .mobile-form {
+    @apply space-y-4;
+  }
+
+  .mobile-form-group {
+    @apply space-y-2;
+  }
+
+  /* Mobile table styles */
+  .mobile-table-container {
+    @apply overflow-x-auto -mx-4 sm:mx-0;
+  }
+
+  .mobile-table {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+
+  /* Safe area handling for mobile devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Touch-friendly focus states */
+  .focus-touch {
+    @apply focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+  }
+
+  /* Mobile-specific spacing */
+  .mobile-spacing {
+    @apply space-y-4 sm:space-y-6;
+  }
+
+  /* Prevent text selection on touch (useful for buttons) */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Mobile content optimization */
+  @media (max-width: 768px) {
+    /* Ensure content containers fit mobile screens */
+    .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+    
+    /* Better spacing for mobile cards and components */
+    .card, .bg-white {
+      margin: 0.5rem !important;
+      border-radius: 0.75rem !important;
+    }
+    
+    /* Ensure tables are responsive */
+    table {
+      font-size: 0.875rem;
+    }
+    
+    /* Better mobile form layouts */
+    .grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    
+    /* Ensure modal/popup content fits mobile */
+    .modal, .dialog {
+      margin: 1rem !important;
+      max-width: calc(100vw - 2rem) !important;
+      max-height: calc(100vh - 2rem) !important;
+    }
+  }
+}
